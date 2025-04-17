@@ -1,0 +1,240 @@
+.leaderboardContainer {
+  padding: 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.leaderboardTitle {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #1a1a2e;
+  text-align: center;
+}
+
+.leaderboardSubtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.leaderboardTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.leaderboardTable th {
+  text-align: left;
+  padding: 16px;
+  background-color: #f5f5f7;
+  color: #1a1a2e;
+  font-weight: 600;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.leaderboardTable td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.leaderboardTable tbody tr:hover {
+  background-color: #f9fafc;
+}
+
+.rankCell {
+  width: 80px;
+  text-align: center;
+}
+
+.rank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-weight: bold;
+  color: white;
+  background-color: #666;
+}
+
+.rank1 {
+  background: linear-gradient(135deg, #FFD700, #FFC700);
+  box-shadow: 0 2px 4px rgba(255, 215, 0, 0.3);
+}
+
+.rank2 {
+  background: linear-gradient(135deg, #C0C0C0, #A8A8A8);
+  box-shadow: 0 2px 4px rgba(192, 192, 192, 0.3);
+}
+
+.rank3 {
+  background: linear-gradient(135deg, #CD7F32, #BE6F2D);
+  box-shadow: 0 2px 4px rgba(205, 127, 50, 0.3);
+}
+
+.playerCell {
+  min-width: 180px;
+}
+
+.playerInfo {
+  display: flex;
+  align-items: center;
+}
+
+.playerAvatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.xpCell {
+  font-weight: bold;
+  color: #1a1a2e;
+}
+
+.cashCell {
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+.badgeCell {
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.bronze {
+  background: linear-gradient(135deg, #CD7F32, #BE6F2D);
+}
+
+.silver {
+  background: linear-gradient(135deg, #C0C0C0, #A8A8A8);
+}
+
+.gold {
+  background: linear-gradient(135deg, #FFD700, #FFC700);
+}
+
+.dateCell {
+  color: #666;
+  font-size: 14px;
+}
+
+.topRank {
+  background-color: rgba(255, 250, 205, 0.2);
+}
+
+.loadingContainer, .errorContainer, .emptyContainer {
+  padding: 40px;
+  text-align: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 20px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #1a1a2e;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.retryButton {
+  background-color: #1a1a2e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.retryButton:hover {
+  background-color: #2a2a4e;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .leaderboardContainer {
+    background-color: #1e293b;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .leaderboardTitle {
+    color: #f5f5f7;
+  }
+  
+  .leaderboardSubtitle {
+    color: #aaa;
+  }
+  
+  .leaderboardTable th {
+    background-color: #16213e;
+    color: #f5f5f7;
+    border-bottom: 2px solid #333;
+  }
+  
+  .leaderboardTable td {
+    border-bottom: 1px solid #333;
+    color: #e0e0e0;
+  }
+  
+  .leaderboardTable tbody tr:hover {
+    background-color: #263546;
+  }
+  
+  .xpCell {
+    color: #f5f5f7;
+  }
+  
+  .cashCell {
+    color: #4caf50;
+  }
+  
+  .dateCell {
+    color: #aaa;
+  }
+  
+  .topRank {
+    background-color: rgba(25, 33, 57, 0.5);
+  }
+  
+  .spinner {
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top-color: #3a7bd5;
+  }
+  
+  .retryButton {
+    background-color: #0f3460;
+  }
+  
+  .retryButton:hover {
+    background-color: #1a5180;
+  }
+} 

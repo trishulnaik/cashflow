@@ -1,0 +1,253 @@
+.authForm {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.authForm h2 {
+  font-size: 24px;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #1a1a2e;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: #1a1a2e;
+  box-shadow: 0 0 0 2px rgba(26, 26, 46, 0.1);
+}
+
+.submitButton {
+  width: 100%;
+  padding: 14px;
+  background-color: #1a1a2e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: #2a2a4e;
+}
+
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.errorMessage {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  color: #666;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #ddd;
+}
+
+.divider span {
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+.googleButton {
+  width: 100%;
+  padding: 14px;
+  background-color: white;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.googleButton:hover:not(:disabled) {
+  background-color: #f5f5f5;
+}
+
+.googleButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.switchOption {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.switchButton {
+  background: none;
+  border: none;
+  color: #1a1a2e;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+}
+
+.switchButton:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.switchButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.authContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 50px 20px;
+}
+
+.authHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.authHeader h1 {
+  font-size: 36px;
+  margin-bottom: 12px;
+  color: #1a1a2e;
+}
+
+.authHeader p {
+  font-size: 18px;
+  color: #666;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .authForm {
+    background-color: #1e293b;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  .authForm h2 {
+    color: #f5f5f7;
+  }
+  
+  .formGroup label {
+    color: #e0e0e0;
+  }
+  
+  .formGroup input {
+    background-color: #16213e;
+    border-color: #333;
+    color: #f5f5f7;
+  }
+  
+  .formGroup input:focus {
+    border-color: #3a7bd5;
+    box-shadow: 0 0 0 2px rgba(58, 123, 213, 0.1);
+  }
+  
+  .submitButton {
+    background-color: #0f3460;
+  }
+  
+  .submitButton:hover:not(:disabled) {
+    background-color: #1a5180;
+  }
+  
+  .errorMessage {
+    background-color: rgba(198, 40, 40, 0.2);
+    color: #ff6b6b;
+  }
+  
+  .divider {
+    color: #aaa;
+  }
+  
+  .divider::before,
+  .divider::after {
+    border-bottom: 1px solid #333;
+  }
+  
+  .googleButton {
+    background-color: #16213e;
+    color: #f5f5f7;
+    border-color: #333;
+  }
+  
+  .googleButton:hover:not(:disabled) {
+    background-color: #1c273d;
+  }
+  
+  .switchOption {
+    color: #aaa;
+  }
+  
+  .switchButton {
+    color: #3a7bd5;
+  }
+  
+  .authHeader h1 {
+    color: #f5f5f7;
+  }
+  
+  .authHeader p {
+    color: #aaa;
+  }
+} 

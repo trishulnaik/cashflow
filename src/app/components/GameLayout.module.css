@@ -1,0 +1,2412 @@
+/* Game Layout Container */
+.gameContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #16213e;
+}
+
+/* Main Layout Media Queries */
+@media (min-width: 768px) {
+  .gameContainer {
+    flex-direction: row;
+  }
+  
+  .mainPanel {
+    flex: 1;
+    overflow-y: auto;
+    margin-left: 280px; /* Match sidebar width */
+  }
+}
+
+/* Make sure the main panel is full width in mobile view */
+@media (max-width: 767px) {
+  .mainPanel {
+    width: 100%;
+    margin-left: 0;
+    padding: 15px;
+    padding-top: 60px; /* Space for mobile header */
+  }
+  
+  /* Add mobile header with app name for when sidebar is collapsed */
+  .mobileHeader {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: #1a1a2e;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mobileHeader .logo {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .mobileHeader .menuIcon {
+    position: absolute;
+    left: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  /* Hide mobile header in desktop view */
+  .mobileHeader {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .mobileHeader {
+    display: flex;
+  }
+}
+
+/* Improved Sidebar Responsiveness */
+.sidebar {
+  width: 280px;
+  background-color: #1a1a2e;
+  color: #f5f5f7;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 100vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+  z-index: 10;
+}
+
+/* Collapsed sidebar style for mobile */
+.sidebar.collapsed {
+  transform: translateX(-100%);
+}
+
+/* Phase navigation improvements */
+.phaseNav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 767px) {
+  .phaseNav {
+    margin: 15px 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  
+  .phaseButton {
+    padding: 10px 8px;
+    font-size: 14px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .phaseNav {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.statsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.stat {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.statLabel {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.statValue {
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+}
+
+/* Progress Bar */
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(to right, #4caf50, #8bc34a);
+  border-radius: 4px;
+  transition: width 0.5s ease-in-out;
+}
+
+/* Scoring Stats */
+.statScores {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.scoreStat {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.scoreStat:last-child {
+  margin-bottom: 0;
+}
+
+/* Badges */
+.badgesContainer {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.badgesTitle {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+.badgesList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: default;
+  transition: transform 0.2s;
+}
+
+.badge:hover {
+  transform: scale(1.05);
+}
+
+.unlocked {
+  background-color: rgba(76, 175, 80, 0.3);
+  border: 1px solid rgba(76, 175, 80, 0.6);
+}
+
+.locked {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  opacity: 0.6;
+}
+
+.badgeIcon {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.badgeName {
+  font-size: 12px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  color: #fff;
+}
+
+/* XP Notification */
+.xpNotification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  animation: fadeInOut 3s forwards;
+  z-index: 1000;
+}
+
+.xpAmount {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.xpReason {
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.positive {
+  border-left: 4px solid #4caf50;
+}
+
+.negative {
+  border-left: 4px solid #f44336;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-20px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
+/* Score Breakdown */
+.scoringBreakdown {
+  background-color: #f5f5f7;
+  padding: 24px;
+  border-radius: 8px;
+  margin-top: 24px;
+  margin-bottom: 32px;
+}
+
+.scoreItem {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.scoreItem:last-child {
+  margin-bottom: 0;
+}
+
+.timerButton {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.gameOverIndicator {
+  color: #f44336;
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.timerRunning {
+  color: #4CAF50;
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.phaseNav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.phaseButton {
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.phaseButton:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.phaseButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.activePhase {
+  background-color: rgba(255, 255, 255, 0.2);
+  font-weight: bold;
+}
+
+/* Main Panel Styles */
+.mainPanel {
+  flex: 1;
+  background-color: #16213e;
+  color: #f5f5f7;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.phaseContent {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.phaseContent h1, 
+.phaseContent h2,
+.phaseContent h3 {
+  color: #f5f5f7;
+}
+
+.phaseContent h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.phaseContent h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.phaseContent h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.phaseContent p {
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.phaseContent button {
+  background-color: #1a1a2e;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 16px;
+}
+
+.phaseContent button:hover:not(:disabled) {
+  background-color: #2a2a4e;
+}
+
+.phaseContent button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Financial Dashboard Styles */
+.financialSummary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.summaryCard {
+  padding: 24px;
+  border-radius: 8px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.summaryCard h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.summaryAmount {
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.cashCard {
+  background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+}
+
+.receivablesCard {
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+}
+
+.payablesCard {
+  background: linear-gradient(135deg, #fc4a1a, #f7b733);
+}
+
+.dashboardTabs {
+  margin: 30px 0;
+}
+
+.paymentsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.paymentsSection {
+  background-color: #1e293b; /* Dark theme by default */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 24px;
+  color: #f5f5f7;
+}
+
+.paymentsTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+  background-color: #0f3460;
+  padding: 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  gap: 8px;
+  color: #f5f5f7;
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+  padding: 16px;
+  border-bottom: 1px solid #333;
+  align-items: center;
+  gap: 8px;
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+.priority {
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  text-align: center;
+}
+
+.high {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.medium {
+  background-color: #fff8e1;
+  color: #ff8f00;
+}
+
+.low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.priorityActions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.priorityActions button {
+  padding: 6px 10px;
+  font-size: 12px;
+  margin-top: 0;
+  min-width: 60px;
+}
+
+.priorityActions button.activeBtn {
+  opacity: 1;
+  position: relative;
+  padding-right: 20px;
+}
+
+.priorityActions button.activeBtn::after {
+  content: "✓";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+}
+
+.collectBtn, .payBtn {
+  margin-left: auto;
+  min-width: 80px !important;
+}
+
+.collectBtn {
+  background-color: #2e7d32 !important;
+}
+
+.collectBtn:hover:not(:disabled) {
+  background-color: #1b5e20 !important;
+}
+
+.payBtn {
+  background-color: #c62828 !important;
+}
+
+.payBtn:hover:not(:disabled) {
+  background-color: #b71c1c !important;
+}
+
+/* Game Over styles */
+.gameOverContainer {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #1e293b;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  color: #f5f5f7;
+}
+
+.finalScores {
+  margin: 2rem 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 1rem 0;
+}
+
+.finalScore {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+/* Performance score colors */
+.goldScore {
+  color: #ffd700;
+  font-weight: bold;
+}
+
+.silverScore {
+  color: #c0c0c0;
+  font-weight: bold;
+}
+
+.bronzeScore {
+  color: #cd7f32;
+  font-weight: bold;
+}
+
+.failScore {
+  color: #ff4d4d;
+  font-weight: bold;
+}
+
+.positiveReserve {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.negativeReserve {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+/* Dashboard Styles */
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.dashboardCard {
+  background-color: white;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.dashboardCard h2 {
+  margin-bottom: 12px;
+}
+
+.dashboardCard p {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+/* Negotiation Styles */
+.negotiationPanel {
+  margin-top: 24px;
+}
+
+.negotiationCard {
+  background-color: #1e293b;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: #f5f5f7;
+}
+
+.dealActions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dealActions button {
+  margin-top: 0;
+}
+
+.counterOfferSection {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
+
+.counterOfferInput {
+  display: flex;
+  gap: 12px;
+}
+
+.counterOfferInput input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.dealResult {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 6px;
+}
+
+.success {
+  color: #2e7d32;
+}
+
+.error {
+  color: #c62828;
+}
+
+/* Payment Schedule Styles */
+.paymentScheduleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.paymentsTable {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.paidStatus {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.unpaidStatus {
+  color: #c62828;
+  font-weight: bold;
+}
+
+.tableRow button {
+  margin-top: 0;
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .mainPanel {
+    background-color: #16213e;
+    color: #f5f5f7;
+  }
+  
+  .phaseContent h1, 
+  .phaseContent h2,
+  .phaseContent h3 {
+    color: #f5f5f7;
+  }
+  
+  .phaseContent button {
+    background-color: #0f3460;
+  }
+  
+  .phaseContent button:hover:not(:disabled) {
+    background-color: #1a5180;
+  }
+  
+  .summaryCard {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .paymentsSection,
+  .gameOverContainer {
+    background-color: #1e293b;
+    color: #f5f5f7;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  .tableHeader {
+    background-color: #0f3460;
+    color: #f5f5f7;
+  }
+  
+  .tableRow {
+    border-bottom: 1px solid #333;
+  }
+  
+  .finalScores {
+    background-color: #16213e;
+  }
+  
+  .high {
+    background-color: rgba(198, 40, 40, 0.2);
+  }
+  
+  .medium {
+    background-color: rgba(255, 143, 0, 0.2);
+  }
+  
+  .low {
+    background-color: rgba(46, 125, 50, 0.2);
+  }
+  
+  .resetButton {
+    background-color: #0f3460;
+  }
+  
+  .resetButton:hover {
+    background-color: #1a5180;
+  }
+  
+  .dashboardCard,
+  .negotiationCard,
+  .paymentsTable {
+    background-color: #1e293b;
+    color: #f5f5f7;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dashboardCard p {
+    color: #aaa;
+  }
+  
+  .counterOfferInput input {
+    background-color: #16213e;
+    border-color: #333;
+    color: #f5f5f7;
+  }
+  
+  .counterOfferSection {
+    border-top: 1px solid #333;
+  }
+}
+
+/* Vendor Negotiation Styles */
+.negotiationSummary {
+  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.negotiationSummary .summaryCard {
+  background: linear-gradient(135deg, #1a1a2e, #0f3460);
+  padding: 24px;
+  border-radius: 8px;
+  color: white;
+}
+
+.negotiationSummary .summaryCard h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.negotiationActions {
+  margin-bottom: 30px;
+}
+
+.planButton {
+  background-color: #1a1a2e;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.planButton:hover:not(:disabled) {
+  background-color: #2a2a4e;
+}
+
+.negotiationInstructions {
+  margin-bottom: 30px;
+  background-color: #f5f7fa;
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid #1a1a2e;
+}
+
+.vendorList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.vendorCard {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.vendorHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.vendorHeader:hover {
+  background-color: #f9fafc;
+}
+
+.vendorInfo h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+.vendorAmount {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.vendorStatus {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.viewOptionsBtn {
+  background: none;
+  border: 1px solid #1a1a2e;
+  color: #1a1a2e;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 0;
+}
+
+.viewOptionsBtn:hover:not(:disabled) {
+  background-color: #1a1a2e;
+  color: white;
+}
+
+.statusPending, .statusPaidFull, .statusPaidPartial, .statusDelayed {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.statusPending {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.statusPaidFull {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.statusPaidPartial {
+  background-color: #fff8e1;
+  color: #ff8f00;
+}
+
+.statusDelayed {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.vendorOptions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  padding: 20px;
+  background-color: #f9fafc;
+}
+
+.optionCard {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.optionCard h4 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+}
+
+.optionCard p {
+  color: #666;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.optionDetails {
+  background-color: #f5f7fa;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.negotiateBtn {
+  background-color: #ff9800 !important;
+  margin-top: auto !important;
+}
+
+.negotiateBtn:hover:not(:disabled) {
+  background-color: #f57c00 !important;
+}
+
+.delayBtn {
+  background-color: #f44336 !important;
+  margin-top: auto !important;
+}
+
+.delayBtn:hover:not(:disabled) {
+  background-color: #d32f2f !important;
+}
+
+/* Payment Plan Styles */
+.paymentPlanContainer {
+  background-color: white;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.paymentPlanForm {
+  margin-top: 20px;
+}
+
+.planFormRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.planFormRow:last-child {
+  border-bottom: none;
+}
+
+.planVendorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.planVendorName {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.planVendorAmount {
+  color: #666;
+  font-size: 14px;
+}
+
+.planInputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.currencySymbol {
+  position: absolute;
+  left: 10px;
+  color: #666;
+  font-size: 16px;
+}
+
+.inputWrapper input {
+  padding: 10px 10px 10px 30px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 150px;
+  transition: border-color 0.2s;
+}
+
+.inputWrapper input:focus {
+  outline: none;
+  border-color: #1a1a2e;
+}
+
+.inputError {
+  border-color: #c62828 !important;
+}
+
+.errorMessage {
+  color: #c62828;
+  font-size: 12px;
+}
+
+.planSummary {
+  background-color: #f5f7fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 24px;
+}
+
+.planTotalRow, .planRemainingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 16px;
+}
+
+.planTotal, .planRemaining {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.planRemaining.negative {
+  color: #c62828;
+}
+
+.totalErrorMessage {
+  color: #c62828;
+  text-align: center;
+  margin: 15px 0;
+  font-weight: bold;
+  padding: 8px;
+  background-color: #ffebee;
+  border-radius: 4px;
+}
+
+.submitPlanButton {
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submitPlanButton:hover:not(:disabled) {
+  background-color: #1b5e20;
+}
+
+.submitPlanButton:disabled {
+  background-color: #9e9e9e;
+  cursor: not-allowed;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .negotiationInstructions {
+    background-color: #16213e;
+    border-left: 4px solid #0f3460;
+  }
+  
+  .vendorCard {
+    background-color: #1e293b;
+  }
+  
+  .vendorHeader {
+    border-bottom: 1px solid #333;
+  }
+  
+  .vendorHeader:hover {
+    background-color: #263546;
+  }
+  
+  .viewOptionsBtn {
+    border: 1px solid #0f3460;
+    color: #f5f5f7;
+  }
+  
+  .viewOptionsBtn:hover:not(:disabled) {
+    background-color: #0f3460;
+  }
+  
+  .statusPending {
+    background-color: rgba(25, 118, 210, 0.2);
+  }
+  
+  .statusPaidFull {
+    background-color: rgba(46, 125, 50, 0.2);
+  }
+  
+  .statusPaidPartial {
+    background-color: rgba(255, 143, 0, 0.2);
+  }
+  
+  .statusDelayed {
+    background-color: rgba(198, 40, 40, 0.2);
+  }
+  
+  .vendorOptions {
+    background-color: #16213e;
+  }
+  
+  .optionCard {
+    background-color: #1e293b;
+  }
+  
+  .optionCard p {
+    color: #aaa;
+  }
+  
+  .optionDetails {
+    background-color: #16213e;
+  }
+  
+  .paymentPlanContainer {
+    background-color: #1e293b;
+  }
+  
+  .planFormRow {
+    border-bottom: 1px solid #333;
+  }
+  
+  .planVendorAmount {
+    color: #aaa;
+  }
+  
+  .currencySymbol {
+    color: #aaa;
+  }
+  
+  .inputWrapper input {
+    background-color: #16213e;
+    border-color: #333;
+    color: #f5f5f7;
+  }
+  
+  .inputWrapper input:focus {
+    border-color: #3a7bd5;
+  }
+  
+  .planSummary {
+    background-color: #16213e;
+  }
+  
+  .totalErrorMessage {
+    background-color: rgba(198, 40, 40, 0.2);
+  }
+}
+
+/* Summary Screen Styles */
+.summaryContainer {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #1e293b;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  color: #f5f5f7;
+}
+
+.summaryContainer h1 {
+  font-size: 36px;
+  margin-bottom: 16px;
+  color: #f5f5f7;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.summaryCard {
+  background-color: #f5f5f7;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summaryCard h3 {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.summaryValue {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.summaryDetails {
+  background-color: #f5f5f7;
+  padding: 24px;
+  border-radius: 8px;
+  margin: 32px 0;
+  text-align: left;
+}
+
+.statsList {
+  margin-top: 16px;
+}
+
+.statsItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.statsItem:last-child {
+  border-bottom: none;
+}
+
+.summaryActions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.viewDetailsButton {
+  background-color: #0f3460;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.viewDetailsButton:hover {
+  background-color: #1a5180;
+}
+
+.headerButtons {
+  display: flex;
+  gap: 12px;
+}
+
+/* Score badge styles */
+.scoreBadge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.bronze {
+  background: linear-gradient(135deg, #CD7F32, #BE6F2D);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.silver {
+  background: linear-gradient(135deg, #C0C0C0, #A8A8A8);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.gold {
+  background: linear-gradient(135deg, #FFD700, #FFC700);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Vendor status styles */
+.statusGood {
+  color: #2e7d32;
+}
+
+.statusTense {
+  color: #ff8f00;
+}
+
+.statusBad {
+  color: #c62828;
+}
+
+/* Dark mode styles for summary screen */
+@media (prefers-color-scheme: dark) {
+  .summaryContainer {
+    background-color: #1e293b;
+    color: #f5f5f7;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  .summaryContainer h1 {
+    color: #f5f5f7;
+  }
+  
+  .summaryCard {
+    background-color: #16213e;
+  }
+  
+  .summaryDetails {
+    background-color: #16213e;
+  }
+  
+  .statsItem {
+    border-bottom: 1px solid #333;
+  }
+}
+
+/* User Profile Styles */
+.userSection {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.userProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.userAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.userName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.lastSaved {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.saveButton {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.saveButton:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.saveButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.loginPrompt {
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.loginButton {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.loginButton:hover {
+  background-color: #45a049;
+}
+
+.leaderboardButton {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 16px;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leaderboardButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.submitScoreButton {
+  background-color: #3a7bd5;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submitScoreButton:hover {
+  background-color: #5a98e4;
+}
+
+/* Vendor Management Styles */
+.vendorsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.vendorCard {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.vendorHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.vendorHeader h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.vendorRelationship {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.relationshipGood {
+  background-color: #e6f7e9;
+  color: #2e7d32;
+}
+
+.relationshipTense {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.relationshipBad {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.vendorImportance {
+  margin-bottom: 12px;
+}
+
+.criticalVendor {
+  background-color: #ffe0e0;
+  color: #c62828;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.importantVendor {
+  background-color: #e0f2ff;
+  color: #1565c0;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.vendorDetails {
+  margin-bottom: 16px;
+}
+
+.vendorDetail {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.vendorDetail:last-child {
+  border-bottom: none;
+}
+
+.vendorActions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.payVendorButton {
+  background-color: #1a1a2e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.payVendorButton:hover:not(:disabled) {
+  background-color: #2a2a4e;
+}
+
+.payVendorButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.negotiateButton {
+  background-color: transparent;
+  color: #1a1a2e;
+  border: 1px solid #1a1a2e;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.negotiateButton:hover:not(:disabled) {
+  background-color: rgba(26, 26, 46, 0.1);
+}
+
+.negotiateButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.overallStatus {
+  background-color: #f5f5f7;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.overallStatus h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Negotiation Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.negotiationOptions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.negotiationOption {
+  background-color: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.negotiationOption:hover {
+  border-color: #1a1a2e;
+}
+
+.negotiationOption h3 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.negotiationOption p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.selectedOption {
+  border-color: #1a1a2e;
+  background-color: rgba(26, 26, 46, 0.05);
+}
+
+.successChance {
+  font-weight: 500;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.cancelButton {
+  background-color: transparent;
+  color: #666;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cancelButton:hover {
+  background-color: #f5f5f5;
+}
+
+.confirmButton {
+  background-color: #1a1a2e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.confirmButton:hover:not(:disabled) {
+  background-color: #2a2a4e;
+}
+
+.confirmButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Dark Mode Styles */
+@media (prefers-color-scheme: dark) {
+  .vendorCard {
+    background-color: #1e293b;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .relationshipGood {
+    background-color: rgba(46, 125, 50, 0.2);
+  }
+  
+  .relationshipTense {
+    background-color: rgba(230, 81, 0, 0.2);
+  }
+  
+  .relationshipBad {
+    background-color: rgba(198, 40, 40, 0.2);
+  }
+  
+  .vendorDetail {
+    border-bottom: 1px solid #333;
+  }
+  
+  .criticalVendor {
+    background-color: rgba(198, 40, 40, 0.2);
+  }
+  
+  .importantVendor {
+    background-color: rgba(21, 101, 192, 0.2);
+  }
+  
+  .overallStatus {
+    background-color: #16213e;
+  }
+  
+  .negotiateButton {
+    color: #f5f5f7;
+    border-color: #f5f5f7;
+  }
+  
+  .negotiateButton:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .modalContent {
+    background-color: #1e293b;
+    color: #f5f5f7;
+  }
+  
+  .negotiationOption {
+    background-color: #16213e;
+    border-color: #333;
+  }
+  
+  .negotiationOption:hover {
+    border-color: #3a7bd5;
+  }
+  
+  .selectedOption {
+    border-color: #3a7bd5;
+    background-color: rgba(58, 123, 213, 0.1);
+  }
+  
+  .cancelButton {
+    color: #e0e0e0;
+    border-color: #333;
+  }
+  
+  .cancelButton:hover {
+    background-color: #263546;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .gameContainer {
+    flex-direction: row;
+  }
+  
+  .sidebar {
+    width: 280px;
+    height: 100%;
+    max-height: 100vh;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mainPanel {
+    padding: 30px;
+  }
+  
+  /* Adjust vendor cards for tablets */
+  .vendorsContainer {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+/* Small devices (phones) */
+@media (max-width: 767px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+  }
+  
+  .gameContainer {
+    grid-template-columns: 1fr;
+  }
+  
+  .mainPanel {
+    margin-left: 0;
+  }
+  
+  .logo {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .statsContainer {
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .badgesList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .phaseNav {
+    margin: 15px 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  
+  .phaseButton {
+    padding: 10px 8px;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .userSection {
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+  
+  .statLabel {
+    font-size: 12px;
+  }
+  
+  .statValue {
+    font-size: 16px;
+  }
+  
+  .phaseContent h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .phaseContent h2 {
+    font-size: 20px;
+  }
+  
+  /* Financial summary cards in one column */
+  .financialSummary {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  /* Adjust table displays for mobile */
+  .tableHeader, .tableRow {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 10px;
+  }
+  
+  .tableHeader > div:not(:first-child),
+  .tableRow > div:not(:first-child) {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+  }
+  
+  .tableHeader > div:not(:first-child)::before,
+  .tableRow > div:not(:first-child)::before {
+    content: attr(data-label);
+    font-weight: bold;
+  }
+  
+  /* Adjust vendor cards for mobile */
+  .vendorsContainer {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Summary grid for mobile */
+  .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Payment actions for mobile */
+  .vendorActions {
+    flex-direction: column;
+  }
+  
+  /* Negotiation options for mobile */
+  .negotiationOptions {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Mobile toggleable sidebar option */
+  .sidebarToggle {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #1a1a2e;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    font-size: 24px;
+    cursor: pointer;
+    border: none;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 375px) {
+  .sidebar {
+    width: 220px;
+    padding: 0.75rem;
+  }
+  
+  .phaseNav {
+    grid-template-columns: 1fr;
+  }
+  
+  .mainPanel {
+    padding: 15px 10px;
+  }
+  
+  .badgesList {
+    grid-template-columns: 1fr;
+  }
+  
+  .statScores {
+    font-size: 12px;
+  }
+  
+  .logo {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+}
+
+/* Custom Save Dialog styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.saveDialogContainer {
+  background-color: #1e293b;
+  color: #f5f5f7;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+}
+
+.saveDialogContainer h2 {
+  margin-top: 0;
+  color: #f5f5f7;
+  font-size: 1.5rem;
+}
+
+.saveDialogContainer p {
+  margin-bottom: 1.5rem;
+  color: #cbd5e1;
+}
+
+.saveDialogButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.saveButton {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.leaveButton {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancelButton {
+  background-color: #9e9e9e;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Sidebar toggle button for mobile */
+.sidebarToggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #1a1a2e;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  cursor: pointer;
+}
+
+/* Responsive adjustments for financial dashboard cards */
+@media (max-width: 767px) {
+  .financialSummary {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .summaryAmount {
+    font-size: 28px;
+  }
+}
+
+/* Responsive table adjustments */
+@media (max-width: 1024px) {
+  .tableHeader, .tableRow {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr;
+    font-size: 14px;
+  }
+  
+  .priorityActions {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 767px) {
+  .tableHeader, .tableRow {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 12px;
+  }
+  
+  .tableHeader > div:not(:first-child),
+  .tableRow > div:not(:first-child) {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .tableHeader > div:not(:first-child)::before,
+  .tableRow > div:not(:first-child)::before {
+    content: attr(data-label);
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  
+  .priorityActions {
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  
+  .priorityActions button {
+    flex: 1;
+    min-width: auto;
+    padding: 8px 5px;
+    font-size: 12px;
+  }
+  
+  .collectBtn, .payBtn {
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 0;
+  }
+}
+
+/* Negotiation Styles */
+.negotiationPanel {
+  margin-top: 24px;
+}
+
+.negotiationCard {
+  background-color: #1e293b;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: #f5f5f7;
+}
+
+.negotiationOptions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+@media (max-width: 767px) {
+  .negotiationCard {
+    padding: 16px;
+  }
+  
+  .negotiationOptions {
+    grid-template-columns: 1fr;
+  }
+  
+  .dealActions {
+    flex-direction: column;
+  }
+  
+  .counterOfferInput {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .counterOfferInput input {
+    width: 100%;
+  }
+}
+
+/* Payment Schedule Styles */
+.paymentScheduleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 767px) {
+  .paymentScheduleHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .headerButtons {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .headerButtons button {
+    flex: 1;
+    text-align: center;
+    padding: 10px 5px;
+    margin: 0;
+  }
+}
+
+/* Vendor Management Styles */
+.vendorsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+@media (max-width: 1024px) {
+  .vendorsContainer {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .vendorsContainer {
+    grid-template-columns: 1fr;
+  }
+  
+  .vendorHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .vendorStatus {
+    align-items: flex-start;
+  }
+  
+  .vendorActions {
+    margin-top: 15px;
+  }
+}
+
+/* Summary Screen Styles */
+.summaryContainer {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #1e293b;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  color: #f5f5f7;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 32px 0;
+}
+
+@media (max-width: 767px) {
+  .summaryContainer {
+    padding: 20px;
+  }
+  
+  .summaryGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .summaryActions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .summaryActions button {
+    width: 100%;
+  }
+  
+  .statsItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}
+
+/* Game Over styles */
+.gameOverContainer {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #1e293b;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  color: #f5f5f7;
+}
+
+@media (max-width: 767px) {
+  .gameOverContainer {
+    padding: 1.5rem;
+  }
+  
+  .finalScore {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 10px 0;
+  }
+}
+
+/* Custom Save Dialog styles */
+@media (max-width: 567px) {
+  .saveDialogContainer {
+    padding: 1.5rem;
+  }
+  
+  .saveDialogButtons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .saveButton, .leaveButton, .cancelButton {
+    width: 100%;
+  }
+} 

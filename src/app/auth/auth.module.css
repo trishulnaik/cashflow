@@ -1,0 +1,20 @@
+.authPageContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f7;
+  padding: 20px;
+}
+
+.authPageContent {
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .authPageContainer {
+    background-color: #121212;
+  }
+} 
